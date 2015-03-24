@@ -1,7 +1,8 @@
 var baseDifference = require('../internal/baseDifference'),
     baseFlatten = require('../internal/baseFlatten'),
     isArguments = require('../lang/isArguments'),
-    isArray = require('../lang/isArray');
+    isArray = require('../lang/isArray'),
+    restParam = require('../function/restParam');
 
 /**
  * Creates an array excluding all values of the provided arrays using
@@ -23,18 +24,10 @@ var baseDifference = require('../internal/baseDifference'),
  * _.difference([1, 2, 3], [4, 2]);
  * // => [1, 3]
  */
-function difference() {
-  var args = arguments,
-      index = -1,
-      length = args.length;
-
-  while (++index < length) {
-    var value = args[index];
-    if (isArray(value) || isArguments(value)) {
-      break;
-    }
-  }
-  return baseDifference(value, baseFlatten(args, false, true, ++index));
-}
+var difference = restParam(function(array, values) {
+  return (isArray(array) || isArguments(array))
+    ? baseDifference(array, baseFlatten(values, false, true))
+    : [];
+});
 
 module.exports = difference;

@@ -30,7 +30,7 @@ var objToString = objectProto.toString;
  * // => false
  */
 function isBoolean(value) {
-  return (value === true || value === false || isObjectLike(value) && objToString.call(value) == boolTag) || false;
+  return value === true || value === false || (isObjectLike(value) && objToString.call(value) == boolTag);
 }
 
 module.exports = isBoolean;

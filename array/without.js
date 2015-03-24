@@ -1,5 +1,7 @@
 var baseDifference = require('../internal/baseDifference'),
-    baseSlice = require('../internal/baseSlice');
+    isArguments = require('../lang/isArguments'),
+    isArray = require('../lang/isArray'),
+    restParam = require('../function/restParam');
 
 /**
  * Creates an array excluding all provided values using `SameValueZero` for
@@ -21,8 +23,10 @@ var baseDifference = require('../internal/baseDifference'),
  * _.without([1, 2, 1, 3], 1, 2);
  * // => [3]
  */
-function without(array) {
-  return baseDifference(array, baseSlice(arguments, 1));
-}
+var without = restParam(function(array, values) {
+  return (isArray(array) || isArguments(array))
+    ? baseDifference(array, values)
+    : [];
+});
 
 module.exports = without;

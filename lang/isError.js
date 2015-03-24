@@ -31,7 +31,7 @@ var objToString = objectProto.toString;
  * // => false
  */
 function isError(value) {
-  return (isObjectLike(value) && typeof value.message == 'string' && objToString.call(value) == errorTag) || false;
+  return isObjectLike(value) && typeof value.message == 'string' && objToString.call(value) == errorTag;
 }
 
 module.exports = isError;

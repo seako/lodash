@@ -9,16 +9,16 @@ var baseCallback = require('../internal/baseCallback'),
  * search algorithm for sorted arrays. If an iteratee function is provided it
  * is invoked for each value in the array to generate the criterion by which
  * uniqueness is computed. The `iteratee` is bound to `thisArg` and invoked
- * with three arguments; (value, index, array).
+ * with three arguments: (value, index, array).
  *
- * If a property name is provided for `predicate` the created `_.property`
+ * If a property name is provided for `iteratee` the created `_.property`
  * style callback returns the property value of the given element.
  *
  * If a value is also provided for `thisArg` the created `_.matchesProperty`
  * style callback returns `true` for elements that have a matching property
  * value, else `false`.
  *
- * If an object is provided for `predicate` the created `_.matches` style
+ * If an object is provided for `iteratee` the created `_.matches` style
  * callback returns `true` for elements that have the properties of the given
  * object, else `false`.
  *

@@ -29,13 +29,13 @@ var objToString = objectProto.toString;
  * // => false
  */
 function isElement(value) {
-  return (value && value.nodeType === 1 && isObjectLike(value) &&
-    (objToString.call(value).indexOf('Element') > -1)) || false;
+  return !!value && value.nodeType === 1 && isObjectLike(value) &&
+    (objToString.call(value).indexOf('Element') > -1);
 }
 // Fallback for environments without DOM support.
 if (!support.dom) {
   isElement = function(value) {
-    return (value && value.nodeType === 1 && isObjectLike(value) && !isPlainObject(value)) || false;
+    return !!value && value.nodeType === 1 && isObjectLike(value) && !isPlainObject(value);
   };
 }
 
