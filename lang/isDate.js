@@ -30,7 +30,7 @@ define(['../internal/isObjectLike'], function(isObjectLike) {
    * // => false
    */
   function isDate(value) {
-    return (isObjectLike(value) && objToString.call(value) == dateTag) || false;
+    return isObjectLike(value) && objToString.call(value) == dateTag;
   }
 
   return isDate;

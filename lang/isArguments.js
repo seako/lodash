@@ -34,7 +34,7 @@ define(['../internal/isLength', '../internal/isObjectLike'], function(isLength, 
    */
   function isArguments(value) {
     var length = isObjectLike(value) ? value.length : undefined;
-    return (isLength(length) && objToString.call(value) == argsTag) || false;
+    return isLength(length) && objToString.call(value) == argsTag;
   }
 
   return isArguments;

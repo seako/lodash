@@ -30,7 +30,7 @@ define(['../internal/isObjectLike'], function(isObjectLike) {
    * // => false
    */
   function isString(value) {
-    return typeof value == 'string' || (isObjectLike(value) && objToString.call(value) == stringTag) || false;
+    return typeof value == 'string' || (isObjectLike(value) && objToString.call(value) == stringTag);
   }
 
   return isString;

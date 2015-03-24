@@ -33,7 +33,7 @@ define(['../internal/isLength', './isNative', '../internal/isObjectLike'], funct
    * // => false
    */
   var isArray = nativeIsArray || function(value) {
-    return (isObjectLike(value) && isLength(value.length) && objToString.call(value) == arrayTag) || false;
+    return isObjectLike(value) && isLength(value.length) && objToString.call(value) == arrayTag;
   };
 
   return isArray;

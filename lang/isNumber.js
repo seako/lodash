@@ -36,7 +36,7 @@ define(['../internal/isObjectLike'], function(isObjectLike) {
    * // => false
    */
   function isNumber(value) {
-    return typeof value == 'number' || (isObjectLike(value) && objToString.call(value) == numberTag) || false;
+    return typeof value == 'number' || (isObjectLike(value) && objToString.call(value) == numberTag);
   }
 
   return isNumber;

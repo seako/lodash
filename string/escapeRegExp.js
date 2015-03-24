@@ -2,15 +2,16 @@ define(['../internal/baseToString'], function(baseToString) {
 
   /**
    * Used to match `RegExp` special characters.
-   * See this [article on `RegExp` characters](http://www.regular-expressions.info/characters.html#special)
-   * for more details.
+   * See this [article on `RegExp` special characters](http://www.regular-expressions.info/characters.html#special)
+   * for more details. In addition to special characters the forward slash is
+   * escaped to allow for easier `eval` use and `Function` compilation.
    */
   var reRegExpChars = /[.*+?^${}()|[\]\/\\]/g,
       reHasRegExpChars = RegExp(reRegExpChars.source);
 
   /**
-   * Escapes the `RegExp` special characters "\", "^", "$", ".", "|", "?", "*",
-   * "+", "(", ")", "[", "]", "{" and "}" in `string`.
+   * Escapes the `RegExp` special characters "\", "/", "^", "$", ".", "|", "?",
+   * "*", "+", "(", ")", "[", "]", "{" and "}" in `string`.
    *
    * @static
    * @memberOf _
@@ -20,7 +21,7 @@ define(['../internal/baseToString'], function(baseToString) {
    * @example
    *
    * _.escapeRegExp('[lodash](https://lodash.com/)');
-   * // => '\[lodash\]\(https://lodash\.com/\)'
+   * // => '\[lodash\]\(https:\/\/lodash\.com\/\)'
    */
   function escapeRegExp(string) {
     string = baseToString(string);

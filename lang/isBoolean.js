@@ -30,7 +30,7 @@ define(['../internal/isObjectLike'], function(isObjectLike) {
    * // => false
    */
   function isBoolean(value) {
-    return (value === true || value === false || isObjectLike(value) && objToString.call(value) == boolTag) || false;
+    return value === true || value === false || (isObjectLike(value) && objToString.call(value) == boolTag);
   }
 
   return isBoolean;

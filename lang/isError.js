@@ -31,7 +31,7 @@ define(['../internal/isObjectLike'], function(isObjectLike) {
    * // => false
    */
   function isError(value) {
-    return (isObjectLike(value) && typeof value.message == 'string' && objToString.call(value) == errorTag) || false;
+    return isObjectLike(value) && typeof value.message == 'string' && objToString.call(value) == errorTag;
   }
 
   return isError;

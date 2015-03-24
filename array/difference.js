@@ -1,4 +1,4 @@
-define(['../internal/baseDifference', '../internal/baseFlatten', '../lang/isArguments', '../lang/isArray'], function(baseDifference, baseFlatten, isArguments, isArray) {
+define(['../internal/baseDifference', '../internal/baseFlatten', '../lang/isArguments', '../lang/isArray', '../function/restParam'], function(baseDifference, baseFlatten, isArguments, isArray, restParam) {
 
   /**
    * Creates an array excluding all values of the provided arrays using
@@ -20,19 +20,11 @@ define(['../internal/baseDifference', '../internal/baseFlatten', '../lang/isArgu
    * _.difference([1, 2, 3], [4, 2]);
    * // => [1, 3]
    */
-  function difference() {
-    var args = arguments,
-        index = -1,
-        length = args.length;
-
-    while (++index < length) {
-      var value = args[index];
-      if (isArray(value) || isArguments(value)) {
-        break;
-      }
-    }
-    return baseDifference(value, baseFlatten(args, false, true, ++index));
-  }
+  var difference = restParam(function(array, values) {
+    return (isArray(array) || isArguments(array))
+      ? baseDifference(array, baseFlatten(values, false, true))
+      : [];
+  });
 
   return difference;
 });
