@@ -36,7 +36,7 @@ var objToString = objectProto.toString;
  * // => false
  */
 function isNumber(value) {
-  return typeof value == 'number' || (isObjectLike(value) && objToString.call(value) == numberTag) || false;
+  return typeof value == 'number' || (isObjectLike(value) && objToString.call(value) == numberTag);
 }
 
 export default isNumber;

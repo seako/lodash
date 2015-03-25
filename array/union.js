@@ -1,5 +1,6 @@
 import baseFlatten from '../internal/baseFlatten';
 import baseUniq from '../internal/baseUniq';
+import restParam from '../function/restParam';
 
 /**
  * Creates an array of unique values, in order, of the provided arrays using
@@ -20,8 +21,8 @@ import baseUniq from '../internal/baseUniq';
  * _.union([1, 2], [4, 2], [2, 1]);
  * // => [1, 2, 4]
  */
-function union() {
-  return baseUniq(baseFlatten(arguments, false, true, 0));
-}
+var union = restParam(function(arrays) {
+  return baseUniq(baseFlatten(arrays, false, true));
+});
 
 export default union;

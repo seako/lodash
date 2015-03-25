@@ -30,7 +30,7 @@ var objToString = objectProto.toString;
  * // => false
  */
 function isDate(value) {
-  return (isObjectLike(value) && objToString.call(value) == dateTag) || false;
+  return isObjectLike(value) && objToString.call(value) == dateTag;
 }
 
 export default isDate;

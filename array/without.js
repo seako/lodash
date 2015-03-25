@@ -1,5 +1,7 @@
 import baseDifference from '../internal/baseDifference';
-import baseSlice from '../internal/baseSlice';
+import isArguments from '../lang/isArguments';
+import isArray from '../lang/isArray';
+import restParam from '../function/restParam';
 
 /**
  * Creates an array excluding all provided values using `SameValueZero` for
@@ -21,8 +23,10 @@ import baseSlice from '../internal/baseSlice';
  * _.without([1, 2, 1, 3], 1, 2);
  * // => [3]
  */
-function without(array) {
-  return baseDifference(array, baseSlice(arguments, 1));
-}
+var without = restParam(function(array, values) {
+  return (isArray(array) || isArguments(array))
+    ? baseDifference(array, values)
+    : [];
+});
 
 export default without;

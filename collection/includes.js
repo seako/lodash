@@ -1,5 +1,6 @@
 import baseIndexOf from '../internal/baseIndexOf';
 import isArray from '../lang/isArray';
+import isIterateeCall from '../internal/isIterateeCall';
 import isLength from '../internal/isLength';
 import isString from '../lang/isString';
 import values from '../object/values';
@@ -24,6 +25,7 @@ var nativeMax = Math.max;
  * @param {Array|Object|string} collection The collection to search.
  * @param {*} target The value to search for.
  * @param {number} [fromIndex=0] The index to search from.
+ * @param- {Object} [guard] Enables use as a callback for functions like `_.reduce`.
  * @returns {boolean} Returns `true` if a matching element is found, else `false`.
  * @example
  *
@@ -39,7 +41,7 @@ var nativeMax = Math.max;
  * _.includes('pebbles', 'eb');
  * // => true
  */
-function includes(collection, target, fromIndex) {
+function includes(collection, target, fromIndex, guard) {
   var length = collection ? collection.length : 0;
   if (!isLength(length)) {
     collection = values(collection);
@@ -48,10 +50,10 @@ function includes(collection, target, fromIndex) {
   if (!length) {
     return false;
   }
-  if (typeof fromIndex == 'number') {
-    fromIndex = fromIndex < 0 ? nativeMax(length + fromIndex, 0) : (fromIndex || 0);
-  } else {
+  if (typeof fromIndex != 'number' || (guard && isIterateeCall(target, fromIndex, guard))) {
     fromIndex = 0;
+  } else {
+    fromIndex = fromIndex < 0 ? nativeMax(length + fromIndex, 0) : (fromIndex || 0);
   }
   return (typeof collection == 'string' || !isArray(collection) && isString(collection))
     ? (fromIndex < length && collection.indexOf(target, fromIndex) > -1)
